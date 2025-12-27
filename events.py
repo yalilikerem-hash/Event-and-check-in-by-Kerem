@@ -1,15 +1,20 @@
-import random
-from datetime import datetime
-id = random.randint(10,812)
+def create_event(events, name, capacity, price):
+    new_event = {
+        "id": str(len(events) + 1),
+        "name": name,
+        "capacity": int(capacity),
+        "price": float(price),
+        "sessions": []
+    }
+    events.append(new_event)
+    return new_event
 
-event_info = {
-    "id":   id ,
-    "name": "Kerem Yalılı",
-    "location": "Nostalji Düğün Salonu",
-    "start_date": datetime(8,16,2007) ,
-    "end_date":  datetime(8,18,2007),
-    "capacity": 500,
-    "price": 100000               
-}
-   
-def load_events():
+
+def add_session(events, event_id, session_name):    
+    for e in events:
+        if e['id'] == event_id:
+            e['sessions'].append(session_name)
+            return True
+    return False
+
+    
